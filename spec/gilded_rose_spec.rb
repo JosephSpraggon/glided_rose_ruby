@@ -6,7 +6,8 @@ describe GildedRose do
     test_item1 = Item.new("test item1",10, 20)
     test_item2 = Item.new("test item2",5, 40)
     aged_brie = Item.new("Aged Brie", 30, 20)
-    test_item_list = Array.new.push(test_item1, test_item2, aged_brie)
+    backstage_passes = Item.new("Backstage passes to a TAFKAL80ETC concert", 30, 10)
+    test_item_list = Array.new.push(test_item1, test_item2, aged_brie, backstage_passes)
   }
 
 
@@ -40,15 +41,42 @@ describe GildedRose do
       expect(subject.items[1].quality).to eq(0)
     end
 
-    it '"Aged Bried" actually increases in Quality the older it gets' do
-      30.times{subject.update_quality}
-      expect(subject.items[2].sell_in).to eq(0)
-      expect(subject.items[2].quality).to eq(50)
-    end
-
     it 'quality of an item is never over 50' do
       100.times{subject.update_quality}
       expect(subject.items[2].quality).to eq(50)
+    end
+
+    context "Aged Brie" do
+
+      it 'increases in quality the older it gets' do
+        30.times{subject.update_quality}
+        expect(subject.items[2].sell_in).to eq(0)
+        expect(subject.items[2].quality).to eq(50)
+      end
+
+    end
+
+    context "Backstage passes" do
+
+      it 'increases in quality as sell_in goes down' do
+        subject.update_quality
+        expect(subject.items[3].quality).to eq(11)
+      end
+
+      it 'quality increases by 2 when 10 days or less to sell_in' do
+        20.times{subject.update_quality}
+        expect(subject.items[3].quality).to eq(30)
+        subject.update_quality
+        expect(subject.items[3].quality).to eq(32)
+      end
+
+      it 'quality increases by 3 when 5 days or less to sell_in' do
+        25.times{subject.update_quality}
+        expect(subject.items[3].quality).to eq(40)
+        subject.update_quality
+        expect(subject.items[3].quality).to eq(43)
+      end
+
     end
 
     
