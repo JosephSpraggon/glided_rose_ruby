@@ -7,7 +7,8 @@ describe GildedRose do
     test_item2 = Item.new("test item2",5, 40)
     aged_brie = Item.new("Aged Brie", 30, 20)
     backstage_passes = Item.new("Backstage passes to a TAFKAL80ETC concert", 30, 10)
-    test_item_list = Array.new.push(test_item1, test_item2, aged_brie, backstage_passes)
+    sulfuras = Item.new("Sulfuras, Hand of Ragnaros", 50, 50)
+    test_item_list = Array.new.push(test_item1, test_item2, aged_brie, backstage_passes, sulfuras)
   }
 
 
@@ -56,7 +57,7 @@ describe GildedRose do
 
     end
 
-    context "Backstage passes" do
+    context 'Backstage passes' do
 
       it 'increases in quality as sell_in goes down' do
         subject.update_quality
@@ -79,7 +80,15 @@ describe GildedRose do
 
     end
 
-    
+    context 'Sulfuras' do
+
+        it 'quailty or sell_in never goes down' do
+          subject.update_quality
+          expect(subject.items[4].quality).to eq(50)
+          expect(subject.items[4].sell_in).to eq(50)
+        end
+
+    end
 
   end
 
