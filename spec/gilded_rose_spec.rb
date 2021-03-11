@@ -8,7 +8,7 @@ describe GildedRose do
     aged_brie = Item.new("Aged Brie", 30, 20)
     backstage_passes = Item.new("Backstage passes to a TAFKAL80ETC concert", 30, 10)
     sulfuras = Item.new("Sulfuras, Hand of Ragnaros", 50, 50)
-    test_item_list = Array.new.push(test_item1, test_item2, aged_brie, backstage_passes, sulfuras)
+    Array.new.push(test_item1, test_item2, aged_brie, backstage_passes, sulfuras)
   }
 
 
