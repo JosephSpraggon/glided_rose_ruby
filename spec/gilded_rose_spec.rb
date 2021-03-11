@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'gilded_rose'
 
 describe GildedRose do
@@ -102,7 +104,7 @@ describe GildedRose do
       end
 
       it 'quality of a conjured item is never negative' do
-        100.times{conjured_subject.new_day}
+        100.times { conjured_subject.new_day }
         expect(conjured_subject.items[0].quality).to eq(0)
         expect(conjured_subject.items[1].quality).to eq(0)
         expect(conjured_subject.items[2].quality).to eq(0)

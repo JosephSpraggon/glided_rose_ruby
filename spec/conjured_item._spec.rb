@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'conjured_item'
 require 'gilded_rose'
 

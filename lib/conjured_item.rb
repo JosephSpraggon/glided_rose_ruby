@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConjuredItem
   attr_accessor :name, :sell_in, :quality
 
