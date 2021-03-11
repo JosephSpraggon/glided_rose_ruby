@@ -19,17 +19,14 @@ class GildedRose
         end
       end
       item.name != "Sulfuras, Hand of Ragnaros" ? item.sell_in -= 1 : nil
-      if item.sell_in < 0 && item.name != "Aged Brie"
-        if item.name != "Aged Brie"
-          if item.name != "Backstage passes to a TAFKAL80ETC concert"
-            item.quality > 0 && item.name != "Sulfuras, Hand of Ragnaros" ? item.quality -= 1 : item.quality -= item.quality
+      if item.sell_in < 0
+        if item.sell_in < 0
+          if !SPECIAL_ITEMS.include?(item.name) then item.quality > 0  ? item.quality -= 1 : item.quality -= item.quality
+          else item.quality < 50 ? item.quality += 1 : nil
           end
-        else
-          item.quality < 50 ? item.quality += 1 : nil
         end
       end
     end
   end
-
+  
 end
-
