@@ -13,40 +13,23 @@ class GildedRose
     @items.each do |item|
       if !SPECIAL_ITEMS.include?(item.name) && item.quality > 0 then item.quality -= 1
       else
-        if item.quality < 50 then item.quality += 1
-          if item.name == "Backstage passes to a TAFKAL80ETC concert" && item.sell_in < 11 && item.quality < 50 then item.quality += 1
-            item.sell_in < 6 && item.quality < 50 ? item.quality += 1 : nil
-          end
+        item.quality < 50 ? item.quality += 1 : nil
+        if item.name == "Backstage passes to a TAFKAL80ETC concert" && item.sell_in < 11 && item.quality < 50 then item.quality += 1
+          item.sell_in < 6 && item.quality < 50 ? item.quality += 1 : nil
         end
       end
-      if item.name != "Sulfuras, Hand of Ragnaros" then item.sell_in -= 1
-      end
-      if item.sell_in < 0
+      item.name != "Sulfuras, Hand of Ragnaros" ? item.sell_in -= 1 : nil
+      if item.sell_in < 0 && item.name != "Aged Brie"
         if item.name != "Aged Brie"
           if item.name != "Backstage passes to a TAFKAL80ETC concert"
-            if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros" then item.quality -= 1
-              end
-            end
-          else
-            item.quality -= item.quality
+            item.quality > 0 && item.name != "Sulfuras, Hand of Ragnaros" ? item.quality -= 1 : item.quality -= item.quality
           end
         else
-          if item.quality < 50 then item.quality += 1
-          end
+          item.quality < 50 ? item.quality += 1 : nil
         end
       end
     end
   end
-
-
-  private
-
-  # def backstage_passes?
-  #   if item.name == "Backstage passes to a TAFKAL80ETC concert" && item.sell_in < 11 && item.quality < 50 then item.quality = item.quality + 1
-  #     item.sell_in < 6 && item.quality < 50 ? item.quality = item.quality + 1 : nil
-  #   end
-  # end
 
 end
 
