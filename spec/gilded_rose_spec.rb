@@ -22,7 +22,7 @@ describe GildedRose do
   context '#update_quality' do
     
     it 'normal items sell_in & quality decrease by 1' do
-      subject.update_quality
+      subject.new_day
       expect(subject.items[0].sell_in).to eq(9)
       expect(subject.items[0].quality).to eq(19)
       expect(subject.items[1].sell_in).to eq(4)
@@ -30,27 +30,27 @@ describe GildedRose do
     end
 
     it 'normal items quality decreases by 2 after sell by date' do
-      5.times{subject.update_quality}
+      5.times{subject.new_day}
       expect(subject.items[1].quality).to eq(35)
-      subject.update_quality
+      subject.new_day
       expect(subject.items[1].quality).to eq(33)
     end
 
     it 'quality of an item is never negative' do
-      100.times{subject.update_quality}
+      100.times{subject.new_day}
       expect(subject.items[0].quality).to eq(0)
       expect(subject.items[1].quality).to eq(0)
     end
 
     it 'quality of an item is never over 50' do
-      100.times{subject.update_quality}
+      100.times{subject.new_day}
       expect(subject.items[2].quality).to eq(50)
     end
 
     context "Aged Brie" do
 
       it 'increases in quality the older it gets' do
-        30.times{subject.update_quality}
+        30.times{subject.new_day}
         expect(subject.items[2].sell_in).to eq(0)
         expect(subject.items[2].quality).to eq(50)
       end
@@ -60,21 +60,21 @@ describe GildedRose do
     context 'Backstage passes' do
 
       it 'increases in quality as sell_in goes down' do
-        subject.update_quality
+        subject.new_day
         expect(subject.items[3].quality).to eq(11)
       end
 
       it 'quality increases by 2 when 10 days or less to sell_in' do
-        20.times{subject.update_quality}
+        20.times{subject.new_day}
         expect(subject.items[3].quality).to eq(30)
-        subject.update_quality
+        subject.new_day
         expect(subject.items[3].quality).to eq(32)
       end
 
       it 'quality increases by 3 when 5 days or less to sell_in' do
-        25.times{subject.update_quality}
+        25.times{subject.new_day}
         expect(subject.items[3].quality).to eq(40)
-        subject.update_quality
+        subject.new_day
         expect(subject.items[3].quality).to eq(43)
       end
 
@@ -83,7 +83,7 @@ describe GildedRose do
     context 'Sulfuras' do
 
         it 'quality or sell_in never goes down' do
-          subject.update_quality
+          subject.new_day
           expect(subject.items[4].quality).to eq(50)
           expect(subject.items[4].sell_in).to eq(50)
         end
