@@ -82,7 +82,7 @@ describe GildedRose do
 
     context 'Sulfuras' do
 
-        it 'quailty or sell_in never goes down' do
+        it 'quality or sell_in never goes down' do
           subject.update_quality
           expect(subject.items[4].quality).to eq(50)
           expect(subject.items[4].sell_in).to eq(50)
