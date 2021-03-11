@@ -9,8 +9,6 @@ class GildedRose
     @items = items
   end
 
-
-
   def new_day
     update_quality
     update_sell_in
