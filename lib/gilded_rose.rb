@@ -30,8 +30,7 @@ class GildedRose
 
   def update_quality
     @items.each do |item|
-      if item.instance_of? ConjuredItem
-        item.quality -= 2
+      if item.instance_of? ConjuredItem then item.quality -= 2
       else
         if !SPECIAL_ITEMS.include?(item.name) && item.quality > 0 then item.quality -= 1
         else
