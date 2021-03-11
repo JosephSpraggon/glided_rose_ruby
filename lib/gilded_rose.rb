@@ -1,4 +1,5 @@
 require_relative 'item'
+require_relative 'conjured_item'
 
 class GildedRose
   attr_reader :items
@@ -29,11 +30,15 @@ class GildedRose
 
   def update_quality
     @items.each do |item|
-      if !SPECIAL_ITEMS.include?(item.name) && item.quality > 0 then item.quality -= 1
+      if item.instance_of? ConjuredItem
+        item.quality -= 2
       else
-        item.quality < 50 ? item.quality += 1 : nil
-        if item.name == "Backstage passes to a TAFKAL80ETC concert" && item.sell_in < 11 && item.quality < 50 then item.quality += 1
-          item.sell_in < 6 && item.quality < 50 ? item.quality += 1 : nil
+        if !SPECIAL_ITEMS.include?(item.name) && item.quality > 0 then item.quality -= 1
+        else
+          item.quality < 50 ? item.quality += 1 : nil
+          if item.name == "Backstage passes to a TAFKAL80ETC concert" && item.sell_in < 11 && item.quality < 50 then item.quality += 1
+            item.sell_in < 6 && item.quality < 50 ? item.quality += 1 : nil
+          end
         end
       end
     end

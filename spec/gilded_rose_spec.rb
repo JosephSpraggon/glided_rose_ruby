@@ -11,6 +11,14 @@ describe GildedRose do
     Array.new.push(test_item1, test_item2, aged_brie, backstage_passes, sulfuras)
   }
 
+  let (:conjured_item_list){
+    conjured_axe = ConjuredItem.new("Conjured Axe", 6, 30)
+    conjured_sword = ConjuredItem.new("Conjured Sword", 8, 40)
+    conjured_hammer =ConjuredItem.new("Conjured Hammer", 2, 10)
+    Array.new.push(conjured_axe, conjured_sword, conjured_hammer)
+    }
+
+   let (:conjured_subject) {described_class.new(conjured_item_list)}
 
   subject {described_class.new(test_item_list)}
 
@@ -87,6 +95,20 @@ describe GildedRose do
           expect(subject.items[4].quality).to eq(50)
           expect(subject.items[4].sell_in).to eq(50)
         end
+
+    end
+
+    context 'Conjured Items' do
+
+      it 'decrease in quality twice as fast as normal items' do
+        conjured_subject.new_day
+        expect(conjured_subject.items[0].sell_in).to eq(5)
+        expect(conjured_subject.items[0].quality).to eq(28)
+        expect(conjured_subject.items[1].sell_in).to eq(7)
+        expect(conjured_subject.items[1].quality).to eq(38)
+        expect(conjured_subject.items[2].sell_in).to eq(1)
+        expect(conjured_subject.items[2].quality).to eq(8)
+      end
 
     end
 
