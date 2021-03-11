@@ -19,7 +19,7 @@ describe GildedRose do
     expect(subject.items).to eq(test_item_list)
   end
 
-  context '#update_quality' do
+  context '#new_day' do
     
     it 'normal items sell_in & quality decrease by 1' do
       subject.new_day
