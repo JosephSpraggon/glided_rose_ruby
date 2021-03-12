@@ -28,6 +28,8 @@ In the command-line make sure you're within the ruby directory and run "irb -r '
 
 Then create a new list of items in an array 'Array.new' then you can ".push" items into it! First you need to create items using 'Item.new(name, sell_in, quality)' and make some conjured items using 'ConjuredItems.new(name, sell_in, quality)'. Feed the array of items into the instance of the GildedRose class 'GildedRose.new(Array)'. Now you can use the method 'new_day' and watch all the items respond accordingly!
 
+<img width="1638" alt="Screenshot 2021-03-11 at 17 34 44" src="https://user-images.githubusercontent.com/74933838/110934348-cd84e780-8325-11eb-8dac-f287a7117210.png">
+
 --------------------------------------------------
 
 ##Client Specification:
