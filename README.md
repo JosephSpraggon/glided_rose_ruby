@@ -63,4 +63,4 @@ HINT: Test first FTW!
 
 It took me a while to figure out the best approach to taking on this task. This was my first time dealing with legacy code and trying to read someone elses code and figure out how it worked, took me a little while.
 
-Once I got the hang of how the code was running and knowing that although messy the code was working as intended, I thought the best approach would be to write a load of tests to the existing code 
+Once I got the hang of how the code was running and knowing that although messy the code was working as intended, I thought the best approach would be to write a load of tests to the existing code
