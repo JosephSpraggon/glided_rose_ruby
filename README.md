@@ -1,17 +1,17 @@
-*Joe's Gilded Rose Tech Test*
+#Joe's Gilded Rose Tech Test
 
  --------------------------------------------------
 
- *Setup:*
+ ##Setup:
 
 This project runs on Ruby 2.7.0 
 
 Firstly to run the tests as well as check the test coverage you'll need the following gems in your Gemfile:
-
+```
 'rspec'
 'simplecov'
 'rubocop'
-
+```
 As well as "source 'http://rubygems.org'" at the top!
 
 Then  run 'bundle install' in the command-line.
@@ -22,7 +22,7 @@ You can also run the linter 'rubocop' by running 'rubocop' in the command-line a
 
 --------------------------------------------------
 
-*Running the project:*
+##Running the project:
 
 In the command-line make sure you're within the ruby directory and run "irb -r './lib/gilded_rose.rb'"
 
@@ -30,7 +30,7 @@ Then create a new list of items in an array 'Array.new' then you can ".push" ite
 
 --------------------------------------------------
 
-*Client Specification:*
+##Client Specification:
 
 This is a well known kata developed by Terry Hughes. This is commonly used as a tech test to assess a candidate's ability to read, refactor and extend legacy code.
 
@@ -59,8 +59,24 @@ HINT: Test first FTW!
 
 --------------------------------------------------
 
-*How I Achieved This:* 
+##How I Achieved This:
 
 It took me a while to figure out the best approach to taking on this task. This was my first time dealing with legacy code and trying to read someone elses code and figure out how it worked, took me a little while.
 
-Once I got the hang of how the code was running and knowing that although messy the code was working as intended, I thought the best approach would be to write a load of tests to the existing code
+Once I got the hang of how the code was running and knowing that, although messy, the code was working as intended, I thought the best approach would be to write a load of tests to the existing code.
+
+I did this by testing all the criteria brought up in the client specification, for  both normal items and the special items (Aged brie, Backstage passes, Sulfuras). To do this a had to create a 'test_item_list' and then feed it to a 'described_class.new(items)'.
+
+Once I had tests that covered all aspects of the 'GildedRose' class and '#update_quality' method covered I knew that I could begin refactoring and messing around the code and then run 'rspec' to make sure the code is still working correctly!
+
+I started by bring down the massive line count for '#update_quality'. I did this by using logical operators, if/then statements & ternary operators to cut down unnecessarily long if/else statements.
+
+Once I had cut down the method as much as I thought was possible I could see that the '#update_quality' method not only responsible for updating the items quality property but also the items 'sell_in' property. It made sense to then split this method down the middle into '#update_quality' & '#update_sell_in'.
+
+However, now of course, almost all my tests were failing. This was because they were testing that both the 'quality' & 'sell_in' properties which before were being changed in within the old '#update_quality' method. so I thought to solve this I made my two new methods private and created a new method '#new_day' which would call both of the private methods together, so the codes functionality remained intact.
+
+With the legacy code refactored to the point I was happy with I thought it was time to implement the new 'Conjured' items. It seemed that these should act very similarly to the normal items however with the client specified requirement that they should degrade in Quality twice as fast as normal items.
+
+To accomplish this I made a 'ConjuredItem' class that worked exactly the same as normal item classes. I then wrote tests that checked if an item object was a 'ConjuredItem' that is was expected for the quality to drop twice as fast. Then to implement this into the code, I simple ran a check 'instance_of?' method on each item in the list and if it was a 'Conjured' one it's quality would drop byt -= 2 rather than -= 1.
+
+--------------------------------------------------
