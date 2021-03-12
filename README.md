@@ -1,7 +1,7 @@
-#Joe's Gilded Rose Tech Test
+# Joe's Gilded Rose Tech Test
  --------------------------------------------------
 
- ##Setup:
+ ## Setup:
 
 This project runs on Ruby 2.7.0 
 
@@ -21,7 +21,7 @@ You can also run the linter 'rubocop' by running 'rubocop' in the command-line a
 
 --------------------------------------------------
 
-##Running the project:
+## Running the project:
 
 In the command-line make sure you're within the ruby directory and run "irb -r './lib/gilded_rose.rb'"
 
@@ -31,7 +31,7 @@ Then create a new list of items in an array 'Array.new' then you can ".push" ite
 
 --------------------------------------------------
 
-##Client Specification:
+## Client Specification:
 
 This is a well known kata developed by Terry Hughes. This is commonly used as a tech test to assess a candidate's ability to read, refactor and extend legacy code.
 
@@ -60,7 +60,7 @@ HINT: Test first FTW!
 
 --------------------------------------------------
 
-##How I Achieved This:
+## How I Achieved This:
 
 It took me a while to figure out the best approach to taking on this task. This was my first time dealing with legacy code and trying to read someone elses code and figure out how it worked, took me a little while.
 
