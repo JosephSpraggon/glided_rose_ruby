@@ -1,5 +1,4 @@
 # Joe's Gilded Rose Tech Test
- --------------------------------------------------
 
  ## Setup:
 
@@ -19,8 +18,6 @@ Once all gems are bundled you can run 'rspec' in the command-line and you should
 
 You can also run the linter 'rubocop' by running 'rubocop' in the command-line and hopefully not see too many offenses 😅
 
---------------------------------------------------
-
 ## Running the project:
 
 In the command-line make sure you're within the ruby directory and run "irb -r './lib/gilded_rose.rb'"
@@ -28,8 +25,6 @@ In the command-line make sure you're within the ruby directory and run "irb -r '
 Then create a new list of items in an array 'Array.new' then you can ".push" items into it! First you need to create items using 'Item.new(name, sell_in, quality)' and make some conjured items using 'ConjuredItems.new(name, sell_in, quality)'. Feed the array of items into the instance of the GildedRose class 'GildedRose.new(Array)'. Now you can use the method 'new_day' and watch all the items respond accordingly!
 
 <img width="1638" alt="Screenshot 2021-03-11 at 17 34 44" src="https://user-images.githubusercontent.com/74933838/110934348-cd84e780-8325-11eb-8dac-f287a7117210.png">
-
---------------------------------------------------
 
 ## Client Specification:
 
@@ -58,8 +53,6 @@ Choose legacy code (translated by Emily Bache) in the language of your choice. T
 
 HINT: Test first FTW!
 
---------------------------------------------------
-
 ## How I Achieved This:
 
 It took me a while to figure out the best approach to taking on this task. This was my first time dealing with legacy code and trying to read someone elses code and figure out how it worked, took me a little while.
@@ -79,5 +72,3 @@ However, now of course, almost all my tests were failing. This was because they 
 With the legacy code refactored to the point I was happy with I thought it was time to implement the new 'Conjured' items. It seemed that these should act very similarly to the normal items however with the client specified requirement that they should degrade in Quality twice as fast as normal items.
 
 To accomplish this I made a 'ConjuredItem' class that worked exactly the same as normal item classes. I then wrote tests that checked if an item object was a 'ConjuredItem' that is was expected for the quality to drop twice as fast. Then to implement this into the code, I simple ran a check 'instance_of?' method on each item in the list and if it was a 'Conjured' one it's quality would drop byt -= 2 rather than -= 1.
-
---------------------------------------------------
